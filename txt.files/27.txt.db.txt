@@ -1,0 +1,98 @@
+1.1
+
+1	Yangi Zealandiya	Zealandiya
+2	Xitoy	Pekin
+3	Vatikan	Vatikan
+4	Saudiya Arabistoni	Makka
+5	Rossiya	Moskva
+6	O`zbekiston	Toshkent
+7	Korea	Seoul
+8	Germaniya	Berlin
+9	Africa	Mexico
+10	AQSH	America
+
+1.2
+
+SELECT * FROM CITY WHERE country = "America";
+\2	AQSH	America
+
+
+
+2.1
+
+0			0	0
+9	Romeo va Julietta	Willam Shakespare		
+1	Men	Fotih Duman		
+2	Lol	Fotih Duman		
+4	Aso	Fotih Duman		
+5	Oxi	Fotih Duman		
+6	A`mo	Fotih Duman		
+7	Pir	Fotih Duman		
+8	Dam	Fotih Duman		
+10	Choliqushi	Rashod Nuri Guntekin		
+
+
+
+2.2
+
+SELECT * FROM BOOKS WHERE author = "Fotih Duman";
+
+
+1	Men	Fotih Duman	badiiy	70 000
+2	Lol	Fotih Duman	badiiy	70 000
+4	Aso	Fotih Duman	badiiy	70 000
+5	Oxi	Fotih Duman	badiiy	70 000
+6	A`mo	Fotih Duman	badiiy	70 000
+7	Pir	Fotih Duman	badiiy	70 000
+8	Dam	Fotih Duman	badiiy	70 000
+
+
+
+3
+
+1	Anamoy	Abdullayeva	18
+2	Dilbar	Badriddinova	22
+3	Ra`no	Kadirova	24
+4	Muxlisa	Dadaboyeva	25
+5	Dildora	Eshniyozva	26
+6	Mashxura	Fazliddinova	25
+7	Guli	Gulimova	27
+8	Yusuf	Elyorbekov	27
+9	Bilolxo`ja	Fozilbekov	28
+10	Yaseen	Aliyev	28
+
+
+3.1
+
+SELECT * FROM USER WHERE age = 25;
+
+4	Muxlisa	Dadaboyeva	25
+6	Mashxura	Fazliddinova	25
+
+
+3.2
+
+SELECT first_name, age FROM USER WHERE age = 25;
+
+Muxlisa	25
+Mashxura	25
+
+
+3.3
+
+SELECT first_name, last_name FROM USER WHERE id = 3;
+
+ 3 Ra`no	Kadirova
+
+
+
+
+
+
+by. RR
+
+
+
+
+
+

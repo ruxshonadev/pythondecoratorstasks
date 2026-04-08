@@ -1,0 +1,256 @@
+1-task
+
+SELECT first_name, last_name, age
+FROM students
+WHERE first_name LIKE 'A%' OR first_name LIKE 'E%' OR first_name LIKE 'I%' OR first_name LIKE 'O%' OR first_name LIKE 'U%'
+
+UNION
+
+SELECT first_name, last_name, age
+FROM teachers
+WHERE first_name LIKE 'A%' OR first_name LIKE 'E%' OR first_name LIKE 'I%' OR first_name LIKE 'O%' OR first_name LIKE 'U%';
+
+Abu Bakir	Dilshodov	1
+Anamoy	      Rahimova	       21
+Asadbek  	Maqsudov	2
+Umid	    Dilshodov	       23
+
+
+2-task
+
+SELECT first_name, last_name
+FROM (
+    SELECT first_name, last_name
+    FROM students
+    
+    UNION
+    
+    SELECT first_name, last_name
+    FROM teachers
+) AS combined
+
+ORDER BY LENGTH(last_name) ASC, last_name ASC;
+
+	
+Zulfiqor 	Umidov
+Karim	Karimov
+Asadbek	Maqsudov
+Bilolbek	Maqsudov
+Bunyodbek	Maqsudov
+Hadicha	Maqsudov
+Mardonbek	Maqsudov
+Anamoy	Rahimova
+Gofurjon	Rustamov
+Hasanboy	Rustamov
+Husanboy	Rustamov
+Botirboy	Botirboev
+Abu Bakir	Dilshodov
+Umid	Dilshodov
+Salima	Ergashova
+
+
+
+3-task
+
+SELECT first_name, last_name, 'student' AS manba
+FROM students
+
+UNION
+
+SELECT first_name, last_name, 'teacher' AS manba
+FROM teachers
+
+ORDER BY manba ASC, last_name ASC;
+
+		student
+Botirboy	Botirboev	student
+Abu Bakir	Dilshodov	student
+Asadbek	Maqsudov	student
+Bilolbek	Maqsudov	student
+Bunyodbek	Maqsudov	student
+Hadicha	Maqsudov	student
+Mardonbek	Maqsudov	student
+Gofurjon	Rustamov	student
+Hasanboy	Rustamov	student
+Husanboy	Rustamov	student
+Umid	Dilshodov	teacher
+Salima	Ergashova	teacher
+Karim	Karimov	teacher
+Anamoy	Rahimova	teacher
+Zulfiqor 	Umidov	teacher
+ 
+
+4-task
+
+SELECT first_name, last_name, id
+FROM (
+    SELECT first_name, last_name, id
+    FROM students
+    
+    UNION
+    
+    SELECT first_name, last_name, id
+    FROM teachers
+) AS combined
+
+ORDER BY id DESC
+LIMIT 3;
+
+Abu Bakir	Dilshodov	10
+Asadbek	Maqsudov	9
+Hadicha	Maqsudov	8
+
+
+INTERSECT
+
+5-task
+
+SELECT product_name, order_quantity AS quantity
+FROM orders
+
+INTERSECT
+
+SELECT product_name, shipment_quantity AS quantity
+FROM shipments;
+
+Keyboard	30
+Laptop	10
+Printer	5
+Webcam	12
+
+
+
+6-task
+
+
+SELECT product_name, order_quantity AS quantity
+FROM orders
+WHERE order_quantity >= 5
+
+INTERSECT
+
+SELECT product_name, shipment_quantity AS quantity
+FROM shipments
+WHERE shipment_quantity >= 5;
+SELECT product_name, shipment_quantity AS quantity
+FROM shipments
+
+Laptop	10
+Mouse	45
+Keyboard	30
+Monitor	20
+Printer	5
+Headphones	18
+Webcam	12
+
+7-task
+
+SELECT o.id, o.product_name, o.order_quantity
+FROM orders o
+INNER JOIN shipments s ON o.product_name = s.product_name
+WHERE o.order_quantity = s.shipment_quantity;
+
+29	Laptop	10
+31	Keyboard	30
+33	Printer	5
+35	Webcam	12
+
+
+8-task
+
+FROM shipments s
+WHERE (s.product_name, s.shipment_quantity) IN (
+    SELECT product_name, shipment_quantity
+    FROM shipments
+    
+    INTERSECT
+    
+    SELECT product_name, order_quantity
+    FROM orders
+)
+ORDER BY s.product_name ASC;
+
+24	Keyboard	30
+22	Laptop	10
+26	Printer	5
+28	Webcam	12
+
+
+9-task
+
+SELECT product_name, order_quantity
+FROM orders
+
+EXCEPT
+
+SELECT product_name, shipment_quantity
+FROM shipments;
+
+Headphones	25
+Monitor	15
+Mouse	50
+
+10-task
+
+
+SELECT product_name, shipment_quantity
+FROM shipments
+
+EXCEPT
+
+SELECT product_name, order_quantity
+FROM orders
+
+ORDER BY product_name ASC;
+
+Headphones	18
+Monitor	20
+Mouse	45
+
+
+11-task
+
+SELECT id, product_name, order_quantity AS quantity
+FROM orders
+WHERE id >= 10
+
+EXCEPT
+
+SELECT id, product_name, shipment_quantity AS quantity
+FROM shipments
+WHERE id >= 10;
+
+29	Laptop	10
+30	Mouse	50
+31	Keyboard	30
+32	Monitor	15
+33	Printer	5
+34	Headphones	25
+35	Webcam	12
+
+
+12-task
+
+SELECT id, product_name, shipment_quantity AS quantity
+FROM shipments
+WHERE shipment_quantity < 5
+
+EXCEPT
+
+SELECT id, product_name, order_quantity AS quantity
+FROM orders
+WHERE order_quantity < 5
+
+ORDER BY quantity DESC;
+
+0 rows
+
+
+
+
+
+
+
+
+
+
